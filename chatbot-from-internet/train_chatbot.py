@@ -1,3 +1,5 @@
+# codebase from data-flair.training
+
 import numpy as np
 from keras.models import Sequential
 from keras.layers import Dense, Activation, Dropout
@@ -5,11 +7,13 @@ from keras.optimizers import SGD
 import random
 
 import nltk
+# not originally here
 nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('omw-1.4')
 nltk.download('stopwords')
 nltk.download('corpus')
+# end of import
 from nltk.stem import WordNetLemmatizer
 lemmatizer = WordNetLemmatizer()
 import json
