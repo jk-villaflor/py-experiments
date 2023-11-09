@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Map with Clustering</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"
+    />
+    <style>
+      #map {
+        height: 600px;
+      }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    ></script>
+    <script
+      src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"
+    ></script>
+    
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([14.599512, 120.984222], 6);
+
+        // Add OpenStreetMap tiles as the base layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+        }).addTo(map);
+
+        // Sample data (latitude and longitude coordinates)
+        var data = [
+            { city: 'Manila', lat: 14.599512, lon: 120.984222 },
+            { city: 'Malolos', lat: 14.115286, lon: 120.962112 },
+            { city: 'Malolos', lat: 14.852739, lon: 120.816040 },
+            { city: 'New York', lat: 40.7128, lon: -74.0060 },
+            { city: 'Los Angeles', lat: 34.0522, lon: -118.2437 },
+            { city: 'Chicago', lat: 41.8781, lon: -87.6298 },
+            { city: 'Houston', lat: 29.7604, lon: -95.3698 }
+        ];
+
+        // Create a marker cluster group
+        var markers = L.markerClusterGroup();
+
+        // Add markers to the cluster group
+        for (var i = 0; i < data.length; i++) {
+            var marker = L.marker([data[i].lat, data[i].lon]).bindPopup(data[i].city);
+            markers.addLayer(marker);
+        }
+
+        // Add marker cluster group to the map
+        map.addLayer(markers);
+    </script>
+</body>
+</html>

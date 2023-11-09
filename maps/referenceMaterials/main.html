@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>D3.js Map Plot Example</title>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+<body>
+  <svg width="960" height="600"></svg>
+
+  <script>
+    // Create an SVG element
+    const svg = d3.select("svg");
+
+    // Define a projection (e.g., Albers USA)
+    const projection = d3.geoAlbersUsa();
+
+    // Create a path generator
+    const path = d3.geoPath().projection(projection);
+
+    // Load map data (in this example, US states)
+    d3.json("path/to/your/geojson/file.json").then(function(us) {
+      svg.selectAll("path")
+        .data(us.features)
+        .enter().append("path")
+        .attr("d", path)
+        .style("fill", "steelblue");
+    });
+  </script>
+</body>
+</html>
+
